@@ -1,4 +1,4 @@
-# Bioluks Tap
+# Bioluks' Homebrew User Repository
 
 ## How do I install these formulae?
 
