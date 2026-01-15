@@ -2,12 +2,19 @@ cask "privatevpn" do
   version "3.3.7"
   sha256 :no_check
 
-  url "https://privatevpn.com/client/PrivateVPN.dmg"
+  url "https://privatevpn.com/client/PrivateVPN.dmg",
+      user_agent: :browser
   name "PrivateVPN"
   desc "VPN provider"
   homepage "https://privatevpn.com/"
 
-# disable! date: "2026-01-07", because: :unreachable
+  livecheck do
+    url "https://privatevpn.com/why-privatevpn/view-our-software"
+    regex(/Mac\s+VPN\s+app\s+version(?:\s*)*\s+(\d+(?:\.\d+)+)/i)
+  end
+
+  # Privatevpn's website prevents downloads via curl, that's why we have line 6
+  # disable! date: "2026-01-07", because: :unreachable
 
   depends_on macos: ">= :catalina"
 
